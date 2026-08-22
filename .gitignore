@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+.workbuddy/
+
+# 原始素材（已复制进 src/assets/，避免重复入库）
+/bgm/
+/states/
+/游戏cg/
+/音效库/
+/王总立绘.jpg
