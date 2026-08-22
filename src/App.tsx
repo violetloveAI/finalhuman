@@ -71,7 +71,7 @@ export default function App() {
           key={state.modal.evidence.title}
           evidence={state.modal.evidence}
           onClose={game.closeModal}
-          autoCloseMs={3000}
+          autoCloseMs={state.modal.intense ? undefined : 3000}
         />
       )}
       {state.viewing && <EvidenceModal evidence={state.viewing} onClose={game.closeViewing} />}

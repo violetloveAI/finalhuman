@@ -49,16 +49,6 @@ export function EvidenceModal({ evidence, onClose, autoCloseMs, intense }: Props
                 <div className="sim-user-name">
                   {sec.lines.find((l) => l.label === '姓名')?.value ?? '王总'}
                 </div>
-                <ul className="sim-user-fields">
-                  {sec.lines
-                    .filter((l) => l.label !== '姓名')
-                    .map((l, j) => (
-                      <li key={j} style={{ animationDelay: `${1.5 + j * 0.22}s` }}>
-                        <span className="ev-label">{l.label}</span>
-                        <span className="ev-value">{l.value}</span>
-                      </li>
-                    ))}
-                </ul>
               </div>
             ) : (
               <div key={i} className="evidence-section" style={{ animationDelay: `${0.25 + i * 0.35}s` }}>

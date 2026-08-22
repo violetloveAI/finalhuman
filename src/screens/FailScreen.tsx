@@ -82,13 +82,15 @@ export function FailScreen({ game }: { game: GameApi }) {
           <div className="gallery-card answer-card" onClick={(e) => e.stopPropagation()}>
             <div className="gallery-head">
               <ListChecks size={20} />
-              <h2>{ROUND_NAMES[failStep - 1] ?? '本轮'} · 正确答案</h2>
+              <h2>
+                {isCase002 ? `${ROUND_NAMES[failStep - 1] ?? '本轮'} · 正确答案` : '三个环节 · 正确答案'}
+              </h2>
               <button className="icon-btn" onClick={() => setAnswerOpen(false)} aria-label="关闭">
                 <X size={18} />
               </button>
             </div>
             <div className="answer-list">
-              {(failStep === 1 || failStep === null) && (
+              {(!isCase002 || failStep === 1 || failStep === null) && (
                 <div className="answer-row">
                   <div className="answer-q">
                     <span className="answer-step">环节一</span>
@@ -97,7 +99,7 @@ export function FailScreen({ game }: { game: GameApi }) {
                   <strong className="answer-a">{q1Label}</strong>
                 </div>
               )}
-              {failStep === 2 && (
+              {(!isCase002 || failStep === 2) && (
                 <div className="answer-row">
                   <div className="answer-q">
                     <span className="answer-step">环节二</span>
@@ -116,7 +118,7 @@ export function FailScreen({ game }: { game: GameApi }) {
                   </ul>
                 </div>
               )}
-              {failStep === 3 && (
+              {(!isCase002 || failStep === 3) && (
                 <div className="answer-row">
                   <div className="answer-q">
                     <span className="answer-step">环节三</span>
@@ -133,6 +135,11 @@ export function FailScreen({ game }: { game: GameApi }) {
             {isCase002 && (
               <p className="answer-hint">
                 本案关键：环节一答「没有幻觉」即可直接破案；若答了「存在幻觉」，后续无论如何都无法挽回。
+              </p>
+            )}
+            {!isCase002 && (
+              <p className="answer-hint">
+                本案共三个环节——①幻觉存在性 ②结论可信度 ③指认幻觉源头。每个环节提交前可反复修改，提交后不可撤回，任一答错，幻觉就会进入产品。
               </p>
             )}
             <button className="btn btn-primary answer-close" onClick={() => setAnswerOpen(false)}>
